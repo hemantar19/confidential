@@ -1,0 +1,1037 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONFIDENTIAL FILE</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    background:#050505;
+    color:#eee;
+    font-family:Courier New, monospace;
+    overflow:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.06;
+    background:
+    repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        #fff 4px
+    );
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+    text-align:center;
+    padding:20px;
+}
+
+.introBox{
+    max-width:600px;
+}
+
+.classified{
+    color:#d00;
+    font-size:18px;
+    letter-spacing:5px;
+    margin-bottom:25px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.25;}
+}
+
+#intro h1{
+    font-size:clamp(30px,7vw,60px);
+    margin-bottom:20px;
+}
+
+#intro p{
+    color:#aaa;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+button{
+    font-family:Courier New,monospace;
+    border:1px solid #777;
+    background:#151515;
+    color:#fff;
+    padding:14px 25px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.25s;
+}
+
+button:hover{
+    background:#292929;
+    transform:scale(1.05);
+}
+
+.redBtn{
+    background:#6d0000;
+    border-color:#a00;
+}
+
+.redBtn:hover{
+    background:#9b0000;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+#app{
+    display:none;
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    width:min(750px,100%);
+    margin:auto;
+}
+
+.header{
+    border-bottom:1px solid #333;
+    padding-bottom:15px;
+    margin-bottom:25px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.status{
+    color:#d00000;
+}
+
+.screen{
+    display:none;
+    animation:appear .7s ease;
+}
+
+.screen.active{
+    display:block;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h2{
+    font-size:clamp(25px,6vw,42px);
+    margin-bottom:20px;
+}
+
+p{
+    line-height:1.8;
+    color:#bbb;
+    margin-bottom:20px;
+}
+
+.warning{
+    color:#d00000;
+}
+
+.card{
+    background:#0e0e0e;
+    border:1px solid #333;
+    padding:25px;
+    margin:20px 0;
+    border-radius:5px;
+}
+
+.file{
+    border-left:4px solid #777;
+}
+
+.fileTitle{
+    color:#fff;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.lock{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+input{
+    width:100%;
+    max-width:400px;
+    padding:14px;
+    background:#050505;
+    color:white;
+    border:1px solid #555;
+    border-radius:4px;
+    font-family:Courier New;
+    font-size:18px;
+    text-align:center;
+    outline:none;
+}
+
+input:focus{
+    border-color:#aaa;
+}
+
+/* =========================
+   CLUES
+========================= */
+
+.clueNumber{
+    color:#d00000;
+    font-size:14px;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.evidence{
+    background:#171717;
+    padding:20px;
+    border:1px dashed #555;
+    margin:20px 0;
+}
+
+.evidence strong{
+    color:#fff;
+}
+
+/* =========================
+   MEMORY GAME
+========================= */
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    max-width:500px;
+}
+
+.option{
+    padding:15px;
+    border:1px solid #444;
+    background:#111;
+}
+
+.option:hover{
+    background:#222;
+}
+
+/* =========================
+   TYPING
+========================= */
+
+.typing{
+    min-height:100px;
+    color:#ddd;
+    font-size:18px;
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+#count{
+    font-size:100px;
+    text-align:center;
+    color:#d00000;
+    font-weight:bold;
+}
+
+.center{
+    text-align:center;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+#final{
+    display:none;
+    text-align:center;
+    animation:finalIn 1.5s ease;
+}
+
+@keyframes finalIn{
+    from{
+        opacity:0;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.movieIcon{
+    font-size:85px;
+    margin-bottom:15px;
+}
+
+.finalTitle{
+    font-family:Arial,sans-serif;
+    font-size:clamp(35px,9vw,65px);
+    margin-bottom:15px;
+}
+
+.heart{
+    color:#e00000;
+}
+
+.ticket{
+    background:#f5f5f5;
+    color:#111;
+    max-width:500px;
+    margin:30px auto;
+    padding:25px;
+    border-radius:10px;
+    transform:rotate(-1deg);
+    box-shadow:0 15px 50px #000;
+}
+
+.ticket h3{
+    font-family:Arial,sans-serif;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.ticket p{
+    color:#222;
+    margin:7px;
+}
+
+.ticketLine{
+    border-top:2px dashed #555;
+    margin:15px 0;
+}
+
+/* =========================
+   HEARTS
+========================= */
+
+.floatHeart{
+    position:fixed;
+    bottom:-30px;
+    animation:floatUp linear forwards;
+    z-index:200;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    #count{
+        font-size:75px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<div id="intro">
+
+    <div class="introBox">
+
+        <div class="classified">
+            ⚠ CONFIDENTIAL ⚠
+        </div>
+
+        <h1>PRIVATE INVESTIGATION</h1>
+
+        <p>
+            A confidential file has been created
+            regarding one particular person.
+        </p>
+
+        <p>
+            The person currently reading this
+            may or may not be the suspect.
+        </p>
+
+        <button class="redBtn" onclick="enterFile()">
+            OPEN CONFIDENTIAL FILE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div id="app">
+
+<div class="container">
+
+    <div class="header">
+        <span>CASE #2409</span>
+        <span class="status">● ACTIVE</span>
+    </div>
+
+
+    <!-- SCREEN 1 -->
+
+    <section id="s1" class="screen active">
+
+        <div class="clueNumber">
+            FILE 01
+        </div>
+
+        <h2>Identity Verification</h2>
+
+        <p>
+            Before accessing the evidence,
+            we need to verify the identity of the suspect.
+        </p>
+
+        <div class="card">
+
+            <p>
+                <strong>Question:</strong><br>
+                Is your name the most beautiful name
+                in your husband's phone? 😌
+            </p>
+
+            <input
+                id="name"
+                placeholder="Enter your name..."
+            >
+
+            <br><br>
+
+            <button onclick="verifyName()">
+                VERIFY IDENTITY
+            </button>
+
+        </div>
+
+        <p id="nameResult" class="warning"></p>
+
+    </section>
+
+
+    <!-- SCREEN 2 -->
+
+    <section id="s2" class="screen">
+
+        <div class="clueNumber">
+            FILE 02
+        </div>
+
+        <h2>Evidence Found</h2>
+
+        <p>
+            Identity confirmed.
+        </p>
+
+        <div class="evidence">
+
+            <strong>Evidence #001</strong>
+
+            <br><br>
+
+            Investigation shows that the suspect
+            has one person who can instantly change
+            his mood.
+            
+            <br><br>
+
+            Further investigation reveals...
+
+            <br><br>
+
+            <span class="warning">
+                That person is his wife.
+            </span>
+
+        </div>
+
+        <button onclick="next('s3')">
+            ACCESS NEXT EVIDENCE →
+        </button>
+
+    </section>
+
+
+    <!-- SCREEN 3 -->
+
+    <section id="s3" class="screen">
+
+        <div class="clueNumber">
+            FILE 03
+        </div>
+
+        <h2>Recovered Message</h2>
+
+        <div class="card">
+
+            <div id="typing" class="typing"></div>
+
+        </div>
+
+        <button id="messageBtn"
+                style="display:none"
+                onclick="next('s4')">
+            CONTINUE INVESTIGATION →
+        </button>
+
+    </section>
+
+
+    <!-- SCREEN 4 -->
+
+    <section id="s4" class="screen">
+
+        <div class="clueNumber">
+            FILE 04
+        </div>
+
+        <h2>Memory Verification</h2>
+
+        <p>
+            The investigation requires one final
+            confirmation.
+        </p>
+
+        <div class="card">
+
+            <p>
+                Which of these is the best way
+                to spend an evening together?
+            </p>
+
+            <div class="options">
+
+                <button class="option"
+                        onclick="wrongAnswer()">
+                    😴 Sleep early
+                </button>
+
+                <button class="option"
+                        onclick="correctAnswer()">
+                    🍿 Movie + You + Me
+                </button>
+
+                <button class="option"
+                        onclick="wrongAnswer()">
+                    📱 Phone scrolling
+                </button>
+
+                <button class="option"
+                        onclick="wrongAnswer()">
+                    🧹 House cleaning
+                </button>
+
+            </div>
+
+        </div>
+
+        <p id="answerResult"></p>
+
+    </section>
+
+
+    <!-- SCREEN 5 -->
+
+    <section id="s5" class="screen">
+
+        <div class="clueNumber">
+            FILE 05
+        </div>
+
+        <h2>Something Doesn't Add Up...</h2>
+
+        <div class="evidence">
+
+            <p>
+                We have checked the phone.
+            </p>
+
+            <p>
+                We have checked the messages.
+            </p>
+
+            <p>
+                We have checked the evidence.
+            </p>
+
+            <p>
+                We have checked the suspect.
+            </p>
+
+            <br>
+
+            <p class="warning">
+                But we cannot find any crime.
+            </p>
+
+        </div>
+
+        <button class="redBtn" onclick="revealCountdown()">
+            FIND THE TRUTH
+        </button>
+
+    </section>
+
+
+    <!-- COUNTDOWN -->
+
+    <section id="s6" class="screen center">
+
+        <div class="clueNumber">
+            FINAL TRANSMISSION
+        </div>
+
+        <h2>Decrypting...</h2>
+
+        <p>
+            The truth is being revealed.
+        </p>
+
+        <div id="count">5</div>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section id="final">
+
+        <div class="movieIcon">
+            🍿🎬❤️
+        </div>
+
+        <div class="finalTitle">
+            CASE SOLVED!
+        </div>
+
+        <p>
+            There was no crime.
+        </p>
+
+        <p>
+            There was only one secret mission...
+        </p>
+
+        <div class="ticket">
+
+            <h3>🎬 MOVIE NIGHT 🎬</h3>
+
+            <div class="ticketLine"></div>
+
+            <p>
+                <strong>MISSION:</strong>
+                Watch Drishyam together
+            </p>
+
+            <p>
+                <strong>SUSPECT:</strong>
+                My Beautiful Wife ❤️
+            </p>
+
+            <p>
+                <strong>PARTNER:</strong>
+                Your Husband 😎
+            </p>
+
+            <p>
+                <strong>FOOD:</strong>
+                Popcorn 🍿
+            </p>
+
+            <p>
+                <strong>LOCATION:</strong>
+                Rajhans Cinemas ❤️
+            </p>
+
+            <div class="ticketLine"></div>
+
+            <p>
+                <strong>STATUS:</strong>
+                <span class="heart">
+                    MISSION READY ❤️
+                </span>
+            </p>
+
+        </div>
+
+        <h2>
+            Madam, kya aap mere saath
+            Drishyam dekhengi? ❤️
+        </h2>
+
+        <button class="redBtn" onclick="acceptMission()">
+            YES ❤️🍿
+        </button>
+
+        <button onclick="acceptMission()">
+            Obviously 😌
+        </button>
+
+    </section>
+
+
+</div>
+</div>
+
+
+<script>
+
+/* =====================================================
+   ENTER
+===================================================== */
+
+function enterFile(){
+
+    document.getElementById("intro").style.display="none";
+    document.getElementById("app").style.display="block";
+
+}
+
+
+/* =====================================================
+   SCREEN NAVIGATION
+===================================================== */
+
+function next(id){
+
+    document.querySelectorAll(".screen")
+    .forEach(x => x.classList.remove("active"));
+
+    document.getElementById(id)
+    .classList.add("active");
+
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+function verifyName(){
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const result =
+        document.getElementById("nameResult");
+
+    if(name===""){
+
+        result.innerHTML =
+            "⚠ Identity cannot be verified.";
+
+        return;
+    }
+
+    result.style.color="#aaa";
+
+    result.innerHTML =
+        "Identity verified: " + name +
+        " ❤️";
+
+    setTimeout(()=>{
+        next("s2");
+    },1200);
+
+}
+
+
+/* =====================================================
+   TYPING EFFECT
+===================================================== */
+
+const secretMessage =
+`Recovered message:
+
+"Sometimes you don't need a big reason
+to spend time with the person you love.
+
+You just need popcorn,
+a good movie,
+and the right person sitting beside you.
+
+But there is something else
+you haven't discovered yet..."`;
+
+function startTyping(){
+
+    const box =
+        document.getElementById("typing");
+
+    let i=0;
+
+    function type(){
+
+        if(i < secretMessage.length){
+
+            box.innerHTML +=
+                secretMessage.charAt(i);
+
+            i++;
+
+            setTimeout(type,25);
+
+        }else{
+
+            document.getElementById(
+                "messageBtn"
+            ).style.display="inline-block";
+
+        }
+
+    }
+
+    type();
+
+}
+
+
+/* =====================================================
+   OBSERVE SCREEN CHANGE
+===================================================== */
+
+const observer =
+new MutationObserver(()=>{
+
+    if(document
+       .getElementById("s3")
+       .classList.contains("active")){
+
+        if(document.getElementById("typing").innerHTML===""){
+            startTyping();
+        }
+
+    }
+
+});
+
+observer.observe(
+    document.getElementById("s3"),
+    {
+        attributes:true
+    }
+);
+
+
+/* =====================================================
+   MEMORY GAME
+===================================================== */
+
+function wrongAnswer(){
+
+    const result =
+        document.getElementById("answerResult");
+
+    result.style.color="#d00000";
+
+    result.innerHTML =
+        "❌ Wrong answer. Investigation continues... 😐";
+
+}
+
+
+function correctAnswer(){
+
+    const result =
+        document.getElementById("answerResult");
+
+    result.style.color="#aaa";
+
+    result.innerHTML =
+        "✓ Correct. Obviously you know the suspect very well. 😌";
+
+    setTimeout(()=>{
+        next("s5");
+    },1300);
+
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+function revealCountdown(){
+
+    next("s6");
+
+    let number=5;
+
+    const counter =
+        document.getElementById("count");
+
+    const timer =
+        setInterval(()=>{
+
+            number--;
+
+            counter.innerHTML=number;
+
+            if(number===0){
+
+                clearInterval(timer);
+
+                setTimeout(()=>{
+
+                    document
+                    .getElementById("s6")
+                    .style.display="none";
+
+                    document
+                    .getElementById("final")
+                    .style.display="block";
+
+                    createHearts();
+
+                },700);
+
+            }
+
+        },1000);
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+function acceptMission(){
+
+    document
+    .querySelector("#final h2")
+    .innerHTML =
+    "❤️ MISSION ACCEPTED ❤️";
+
+    document
+    .querySelector("#final .movieIcon")
+    .innerHTML =
+    "🍿🥰🎬❤️";
+
+    createHearts();
+
+    setTimeout(()=>{
+
+        alert(
+        "Movie Night Confirmed! 🍿❤️\n\n" +
+        "Ab husband ko popcorn arrange karna padega 😎"
+        );
+
+    },500);
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHearts(){
+
+    for(let i=0;i<70;i++){
+
+        setTimeout(()=>{
+
+            const h =
+                document.createElement("div");
+
+            h.className="floatHeart";
+
+            h.innerHTML =
+                ["❤️","💕","💖","💗","🍿","🎬"]
+                [Math.floor(Math.random()*6)];
+
+            h.style.left =
+                Math.random()*100+"vw";
+
+            h.style.fontSize =
+                (15+Math.random()*25)+"px";
+
+            h.style.animationDuration =
+                (3+Math.random()*5)+"s";
+
+            document.body.appendChild(h);
+
+            setTimeout(()=>{
+                h.remove();
+            },8000);
+
+        },i*80);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
