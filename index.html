@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>CONFIDENTIAL FILE</title>
 
+
 <style>
+
+/* =====================================================
+   BASIC
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -15,47 +23,71 @@
 }
 
 body{
+
     min-height:100vh;
-    background:#050505;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202020 0%,
+            #090909 55%,
+            #000 100%
+        );
+
     color:#eee;
-    font-family:"Courier New", monospace;
+
+    font-family:
+        "Courier New",
+        monospace;
+
     overflow-x:hidden;
+
 }
+
 
 /* Scanline effect */
 
-body:after{
+body::after{
+
     content:"";
+
     position:fixed;
+
     inset:0;
+
     pointer-events:none;
-    opacity:.06;
+
+    opacity:.05;
 
     background:
-    repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        #fff 4px
-    );
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            #fff 4px
+        );
 
     z-index:999;
+
 }
 
 
-/* =========================
-   INTRO SCREEN
-========================= */
+/* =====================================================
+   INTRO
+===================================================== */
 
 #intro{
 
     position:fixed;
+
     inset:0;
 
     background:#000;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
@@ -63,11 +95,18 @@ body:after{
     padding:20px;
 
     z-index:100;
+
 }
 
+
 .introBox{
+
+    width:100%;
+
     max-width:650px;
+
 }
+
 
 .classified{
 
@@ -80,7 +119,9 @@ body:after{
     margin-bottom:25px;
 
     animation:blink 1s infinite;
+
 }
+
 
 @keyframes blink{
 
@@ -90,30 +131,41 @@ body:after{
 
 }
 
+
 #intro h1{
 
-    font-size:clamp(30px,7vw,60px);
+    font-size:
+        clamp(
+            30px,
+            7vw,
+            60px
+        );
 
     margin-bottom:20px;
+
 }
+
 
 #intro p{
 
-    color:#aaa;
+    color:#999;
 
     line-height:1.8;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
+
 }
 
 
-/* =========================
+/* =====================================================
    BUTTONS
-========================= */
+===================================================== */
 
 button{
 
-    font-family:"Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
 
     border:1px solid #777;
 
@@ -130,7 +182,9 @@ button{
     font-size:16px;
 
     transition:.25s;
+
 }
+
 
 button:hover{
 
@@ -140,22 +194,26 @@ button:hover{
 
 }
 
+
 .redBtn{
 
     background:#650000;
 
     border-color:#a00000;
+
 }
+
 
 .redBtn:hover{
 
     background:#950000;
+
 }
 
 
-/* =========================
-   MAIN APP
-========================= */
+/* =====================================================
+   MAIN
+===================================================== */
 
 #app{
 
@@ -164,17 +222,25 @@ button:hover{
     min-height:100vh;
 
     padding:20px;
+
 }
+
 
 .container{
 
-    width:min(750px,100%);
+    width:min(
+        750px,
+        100%
+    );
 
     margin:auto;
+
 }
 
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
 
@@ -187,29 +253,37 @@ button:hover{
     display:flex;
 
     justify-content:space-between;
+
 }
+
 
 .status{
 
     color:#d00000;
+
 }
 
 
-/* =========================
-   SCREENS
-========================= */
+/* =====================================================
+   SCREEN
+===================================================== */
 
 .screen{
 
     display:none;
 
-    animation:appear .7s ease;
+    animation:
+        appear .7s ease;
+
 }
+
 
 .screen.active{
 
     display:block;
+
 }
+
 
 @keyframes appear{
 
@@ -217,7 +291,8 @@ button:hover{
 
         opacity:0;
 
-        transform:translateY(25px);
+        transform:
+            translateY(25px);
 
     }
 
@@ -225,21 +300,31 @@ button:hover{
 
         opacity:1;
 
-        transform:translateY(0);
+        transform:
+            translateY(0);
 
     }
 
 }
 
 
-/* TEXT */
+/* =====================================================
+   TEXT
+===================================================== */
 
 h2{
 
-    font-size:clamp(25px,6vw,42px);
+    font-size:
+        clamp(
+            25px,
+            6vw,
+            42px
+        );
 
     margin-bottom:20px;
+
 }
+
 
 p{
 
@@ -248,15 +333,20 @@ p{
     color:#bbb;
 
     margin-bottom:20px;
+
 }
+
 
 .warning{
 
     color:#d00000;
+
 }
 
 
-/* CARDS */
+/* =====================================================
+   CARDS
+===================================================== */
 
 .card{
 
@@ -269,7 +359,9 @@ p{
     margin:20px 0;
 
     border-radius:5px;
+
 }
+
 
 .evidence{
 
@@ -280,17 +372,33 @@ p{
     border:1px dashed #555;
 
     margin:20px 0;
+
 }
+
 
 .evidence strong{
 
     color:#fff;
+
 }
 
 
-/* =========================
+.clueNumber{
+
+    color:#d00000;
+
+    font-size:14px;
+
+    letter-spacing:3px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =====================================================
    INPUT
-========================= */
+===================================================== */
 
 input{
 
@@ -308,67 +416,61 @@ input{
 
     border-radius:4px;
 
-    font-family:"Courier New";
+    font-family:
+        "Courier New";
 
     font-size:18px;
 
     text-align:center;
 
     outline:none;
+
 }
+
 
 input:focus{
 
     border-color:#aaa;
+
 }
 
 
-/* =========================
-   CLUE
-========================= */
-
-.clueNumber{
-
-    color:#d00000;
-
-    font-size:14px;
-
-    letter-spacing:3px;
-
-    margin-bottom:10px;
-}
-
-
-/* =========================
+/* =====================================================
    TYPING MESSAGE
-========================= */
+===================================================== */
 
 .typing{
 
-    min-height:130px;
+    min-height:180px;
 
     color:#ddd;
 
-    font-size:18px;
+    font-size:17px;
 
     line-height:1.8;
+
+    white-space:pre-line;
+
 }
 
 
-/* =========================
+/* =====================================================
    OPTIONS
-========================= */
+===================================================== */
 
 .options{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:12px;
 
     max-width:550px;
+
 }
+
 
 .option{
 
@@ -377,17 +479,20 @@ input:focus{
     border:1px solid #444;
 
     background:#111;
+
 }
+
 
 .option:hover{
 
     background:#222;
+
 }
 
 
-/* =========================
+/* =====================================================
    COUNTDOWN
-========================= */
+===================================================== */
 
 #count{
 
@@ -400,17 +505,20 @@ input:focus{
     font-weight:bold;
 
     margin:30px 0;
+
 }
+
 
 .center{
 
     text-align:center;
+
 }
 
 
-/* =========================
+/* =====================================================
    FINAL
-========================= */
+===================================================== */
 
 #final{
 
@@ -418,8 +526,11 @@ input:focus{
 
     text-align:center;
 
-    animation:finalIn 1.5s ease;
+    animation:
+        finalIn 1.5s ease;
+
 }
+
 
 @keyframes finalIn{
 
@@ -427,7 +538,8 @@ input:focus{
 
         opacity:0;
 
-        transform:scale(.5);
+        transform:
+            scale(.5);
 
     }
 
@@ -435,32 +547,42 @@ input:focus{
 
         opacity:1;
 
-        transform:scale(1);
+        transform:
+            scale(1);
 
     }
 
 }
+
 
 .movieIcon{
 
     font-size:85px;
 
     margin-bottom:15px;
+
 }
+
 
 .finalTitle{
 
     font-family:Arial,sans-serif;
 
-    font-size:clamp(35px,9vw,65px);
+    font-size:
+        clamp(
+            35px,
+            9vw,
+            65px
+        );
 
     margin-bottom:15px;
+
 }
 
 
-/* =========================
+/* =====================================================
    MOVIE TICKET
-========================= */
+===================================================== */
 
 .ticket{
 
@@ -478,8 +600,11 @@ input:focus{
 
     transform:rotate(-1deg);
 
-    box-shadow:0 15px 50px #000;
+    box-shadow:
+        0 15px 50px #000;
+
 }
+
 
 .ticket h3{
 
@@ -490,31 +615,39 @@ input:focus{
     margin-bottom:15px;
 
     color:#111;
+
 }
+
 
 .ticket p{
 
     color:#222;
 
     margin:8px;
+
 }
+
 
 .ticketLine{
 
-    border-top:2px dashed #555;
+    border-top:
+        2px dashed #555;
 
     margin:15px 0;
+
 }
+
 
 .heart{
 
     color:#e00000;
+
 }
 
 
-/* =========================
+/* =====================================================
    FLOATING HEARTS
-========================= */
+===================================================== */
 
 .floatHeart{
 
@@ -522,20 +655,23 @@ input:focus{
 
     bottom:-30px;
 
-    animation:floatUp linear forwards;
+    animation:
+        floatUp linear forwards;
 
     z-index:200;
 
     pointer-events:none;
+
 }
+
 
 @keyframes floatUp{
 
     to{
 
         transform:
-        translateY(-110vh)
-        rotate(360deg);
+            translateY(-110vh)
+            rotate(360deg);
 
         opacity:0;
 
@@ -544,66 +680,93 @@ input:focus{
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
     #app{
 
         padding:15px;
+
     }
+
 
     .options{
 
         grid-template-columns:1fr;
+
     }
+
 
     .card{
 
         padding:18px;
+
     }
+
 
     #count{
 
         font-size:75px;
+
+    }
+
+
+    .typing{
+
+        font-size:15px;
+
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ==================================================
-     INTRO
-================================================== -->
+<!-- =====================================================
+     INTRO SCREEN
+===================================================== -->
 
 <div id="intro">
 
     <div class="introBox">
 
         <div class="classified">
+
             ⚠ CONFIDENTIAL ⚠
+
         </div>
 
+
         <h1>
+
             PRIVATE INVESTIGATION
+
         </h1>
 
-        <p>
-            A confidential file has been created
-            regarding one particular person.
-        </p>
 
         <p>
+
+            A confidential file has been created
+            regarding one particular person.
+
+        </p>
+
+
+        <p>
+
             The person currently reading this
             may or may not be the suspect.
+
         </p>
+
 
         <button
             class="redBtn"
@@ -619,9 +782,9 @@ input:focus{
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      MAIN APPLICATION
-================================================== -->
+===================================================== -->
 
 <div id="app">
 
@@ -633,38 +796,53 @@ input:focus{
     <div class="header">
 
         <span>
+
             CASE #2409
+
         </span>
 
+
         <span class="status">
+
             ● ACTIVE
+
         </span>
 
     </div>
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          SCREEN 1
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="s1"
         class="screen active">
 
+
         <div class="clueNumber">
+
             FILE 01
+
         </div>
 
+
         <h2>
+
             Identity Verification
+
         </h2>
 
+
         <p>
+
             Before accessing the evidence,
             we need to verify the identity
             of the suspect.
+
         </p>
+
 
         <div class="card">
 
@@ -681,12 +859,15 @@ input:focus{
 
             </p>
 
+
             <input
                 id="name"
                 placeholder="Enter your name..."
             >
 
+
             <br><br>
+
 
             <button onclick="verifyName()">
 
@@ -695,6 +876,7 @@ input:focus{
             </button>
 
         </div>
+
 
         <p
             id="nameResult"
@@ -705,53 +887,73 @@ input:focus{
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          SCREEN 2
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="s2"
         class="screen">
 
+
         <div class="clueNumber">
+
             FILE 02
+
         </div>
 
+
         <h2>
+
             Evidence Found
+
         </h2>
 
+
         <p>
+
             Identity confirmed.
+
         </p>
+
 
         <div class="evidence">
 
             <strong>
+
                 Evidence #001
+
             </strong>
 
+
             <br><br>
+
 
             Investigation shows that the suspect
             has one person who can instantly change
             his mood.
 
+
             <br><br>
+
 
             Further investigation reveals...
 
+
             <br><br>
+
 
             <span class="warning">
 
-                That person is his wife.
+                That person is his wife. ❤️
 
             </span>
 
         </div>
 
-        <button onclick="next('s3')">
+
+        <button
+            onclick="openRecoveredMessage()">
 
             ACCESS NEXT EVIDENCE →
 
@@ -761,30 +963,40 @@ input:focus{
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          SCREEN 3
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="s3"
         class="screen">
 
+
         <div class="clueNumber">
+
             FILE 03
+
         </div>
 
+
         <h2>
+
             Recovered Message
+
         </h2>
 
+
         <div class="card">
+
 
             <div
                 id="typing"
                 class="typing">
             </div>
 
+
         </div>
+
 
         <button
             id="messageBtn"
@@ -795,32 +1007,44 @@ input:focus{
 
         </button>
 
+
     </section>
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          SCREEN 4
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="s4"
         class="screen">
 
+
         <div class="clueNumber">
+
             FILE 04
+
         </div>
 
+
         <h2>
+
             Memory Verification
+
         </h2>
 
+
         <p>
+
             The investigation requires one final
             confirmation.
+
         </p>
 
+
         <div class="card">
+
 
             <p>
 
@@ -829,7 +1053,9 @@ input:focus{
 
             </p>
 
+
             <div class="options">
+
 
                 <button
                     class="option"
@@ -839,6 +1065,7 @@ input:focus{
 
                 </button>
 
+
                 <button
                     class="option"
                     onclick="correctAnswer()">
@@ -846,6 +1073,7 @@ input:focus{
                     🍿 Movie + You + Me
 
                 </button>
+
 
                 <button
                     class="option"
@@ -855,6 +1083,7 @@ input:focus{
 
                 </button>
 
+
                 <button
                     class="option"
                     onclick="wrongAnswer()">
@@ -863,9 +1092,11 @@ input:focus{
 
                 </button>
 
+
             </div>
 
         </div>
+
 
         <p id="answerResult"></p>
 
@@ -873,41 +1104,62 @@ input:focus{
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          SCREEN 5
-    ================================================== -->
+    ================================================= -->
 
     <section
         id="s5"
         class="screen">
 
+
         <div class="clueNumber">
+
             FILE 05
+
         </div>
 
+
         <h2>
+
             Something Doesn't Add Up...
+
         </h2>
+
 
         <div class="evidence">
 
+
             <p>
+
                 We have checked the phone.
+
             </p>
 
+
             <p>
+
                 We have checked the messages.
+
             </p>
 
+
             <p>
+
                 We have checked the evidence.
+
             </p>
 
+
             <p>
+
                 We have checked the suspect.
+
             </p>
+
 
             <br>
+
 
             <p class="warning">
 
@@ -915,7 +1167,9 @@ input:focus{
 
             </p>
 
+
         </div>
+
 
         <button
             class="redBtn"
@@ -929,13 +1183,14 @@ input:focus{
 
 
 
-    <!-- ==================================================
-         COUNTDOWN
-    ================================================== -->
+    <!-- =================================================
+         SCREEN 6
+    ================================================= -->
 
     <section
         id="s6"
         class="screen center">
+
 
         <div class="clueNumber">
 
@@ -943,27 +1198,38 @@ input:focus{
 
         </div>
 
+
         <h2>
+
             Decrypting...
+
         </h2>
 
+
         <p>
+
             The truth is being revealed.
+
         </p>
 
+
         <div id="count">
+
             5
+
         </div>
+
 
     </section>
 
 
 
-    <!-- ==================================================
+    <!-- =================================================
          FINAL REVEAL
-    ================================================== -->
+    ================================================= -->
 
     <section id="final">
+
 
         <div class="movieIcon">
 
@@ -980,11 +1246,16 @@ input:focus{
 
 
         <p>
+
             There was no crime.
+
         </p>
 
+
         <p>
+
             There was only one secret mission...
+
         </p>
 
 
@@ -993,9 +1264,13 @@ input:focus{
 
         <div class="ticket">
 
+
             <h3>
+
                 🎬 MOVIE NIGHT 🎬
+
             </h3>
+
 
             <div class="ticketLine"></div>
 
@@ -1003,7 +1278,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     MISSION:
+
                 </strong>
 
                 Watch Drishyam together
@@ -1014,7 +1291,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     SUSPECT:
+
                 </strong>
 
                 Boss Lady Under Investigation 🚨😂
@@ -1025,7 +1304,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     PARTNER:
+
                 </strong>
 
                 The Man Behind This Suspicious Plan 🕵️😂
@@ -1036,7 +1317,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     FOOD:
+
                 </strong>
 
                 Popcorn 🍿
@@ -1047,7 +1330,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     LOCATION:
+
                 </strong>
 
                 Rajhans Cinemas ❤️
@@ -1061,7 +1346,9 @@ input:focus{
             <p>
 
                 <strong>
+
                     STATUS:
+
                 </strong>
 
                 <span class="heart">
@@ -1071,6 +1358,7 @@ input:focus{
                 </span>
 
             </p>
+
 
         </div>
 
@@ -1113,50 +1401,59 @@ input:focus{
 <script>
 
 
-/* ==================================================
+/* =====================================================
    ENTER FILE
-================================================== */
+===================================================== */
 
 function enterFile(){
 
     document
         .getElementById("intro")
-        .style.display="none";
+        .style.display = "none";
+
 
     document
         .getElementById("app")
-        .style.display="block";
+        .style.display = "block";
 
 }
 
 
 
-/* ==================================================
+/* =====================================================
    SCREEN NAVIGATION
-================================================== */
+===================================================== */
 
 function next(id){
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(function(screen){
+    const screens =
+        document.querySelectorAll(".screen");
 
-            screen.classList.remove("active");
 
-        });
+    screens.forEach(function(screen){
+
+        screen.classList.remove("active");
+
+    });
 
 
     document
         .getElementById(id)
         .classList.add("active");
 
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
 }
 
 
 
-/* ==================================================
+/* =====================================================
    NAME VERIFICATION
-================================================== */
+===================================================== */
 
 function verifyName(){
 
@@ -1172,10 +1469,10 @@ function verifyName(){
         .getElementById("nameResult");
 
 
-    if(name===""){
+    if(name === ""){
 
         result.innerHTML =
-            "⚠ Identity cannot be verified.";
+            "⚠ Please enter the suspect's name.";
 
         return;
 
@@ -1186,7 +1483,7 @@ function verifyName(){
 
 
     result.innerHTML =
-        "Identity verified: "
+        "✓ Identity verified: "
         + name
         + " ❤️";
 
@@ -1201,46 +1498,89 @@ function verifyName(){
 
 
 
-/* ==================================================
-   TYPING MESSAGE
-================================================== */
+/* =====================================================
+   RECOVERED MESSAGE
+===================================================== */
+
+let typingStarted = false;
+
 
 const secretMessage =
 
-`RECOVERED MESSAGE:
+`RECOVERED MESSAGE
 
-"Sometimes you don't need a big reason
+Date: CLASSIFIED
+Location: CLASSIFIED
+Sender: UNKNOWN
+
+Sometimes you don't need a big reason
 to spend time with the person you love.
 
 You just need popcorn,
 a good movie,
 and the right person sitting beside you.
 
-But there is something else
-you haven't discovered yet..."`;
+The investigation initially suggested
+that something suspicious was happening.
+
+After analysing all available evidence...
+
+ONE THING BECAME CLEAR.
+
+The suspect has been planning
+a secret movie mission.
+
+But the final evidence is still missing...`;
 
 
-function startTyping(){
+
+function openRecoveredMessage(){
+
+    next("s3");
+
+
+    if(typingStarted){
+
+        return;
+
+    }
+
+
+    typingStarted = true;
+
 
     const box =
         document
         .getElementById("typing");
 
 
+    const button =
+        document
+        .getElementById("messageBtn");
+
+
+    box.innerHTML="";
+
+
+    button.style.display="none";
+
+
     let i=0;
 
 
-    function type(){
+    function typeText(){
 
         if(i < secretMessage.length){
 
             box.innerHTML +=
                 secretMessage.charAt(i);
 
+
             i++;
 
+
             setTimeout(
-                type,
+                typeText,
                 25
             );
 
@@ -1248,72 +1588,27 @@ function startTyping(){
 
         else{
 
-            document
-                .getElementById("messageBtn")
-                .style.display="inline-block";
+            setTimeout(function(){
+
+                button.style.display =
+                    "inline-block";
+
+            },500);
 
         }
 
     }
 
 
-    type();
+    typeText();
 
 }
 
 
 
-/* ==================================================
-   START TYPING WHEN SCREEN 3 OPENS
-================================================== */
-
-const observer =
-    new MutationObserver(function(){
-
-        const screen3 =
-            document
-            .getElementById("s3");
-
-
-        if(
-            screen3
-            .classList
-            .contains("active")
-        ){
-
-            const typing =
-                document
-                .getElementById("typing");
-
-
-            if(
-                typing.innerHTML === ""
-            ){
-
-                startTyping();
-
-            }
-
-        }
-
-    });
-
-
-observer.observe(
-
-    document.getElementById("s3"),
-
-    {
-        attributes:true
-    }
-
-);
-
-
-
-/* ==================================================
+/* =====================================================
    WRONG ANSWER
-================================================== */
+===================================================== */
 
 function wrongAnswer(){
 
@@ -1325,16 +1620,34 @@ function wrongAnswer(){
     result.style.color="#d00000";
 
 
+    const messages = [
+
+        "❌ Suspicious answer. Try again. 😐",
+
+        "❌ Evidence suggests otherwise. 😂",
+
+        "❌ Nice try, Boss Lady. 🕵️‍♀️",
+
+        "❌ Investigation not satisfied."
+
+    ];
+
+
     result.innerHTML =
-        "❌ Wrong answer. Investigation continues... 😐";
+        messages[
+            Math.floor(
+                Math.random() *
+                messages.length
+            )
+        ];
 
 }
 
 
 
-/* ==================================================
+/* =====================================================
    CORRECT ANSWER
-================================================== */
+===================================================== */
 
 function correctAnswer(){
 
@@ -1347,22 +1660,23 @@ function correctAnswer(){
 
 
     result.innerHTML =
-        "✓ Correct. Obviously you know the suspect very well. 😌";
+        "✓ Correct answer detected. " +
+        "Suspect knows exactly what the investigator wants. 😌";
 
 
     setTimeout(function(){
 
         next("s5");
 
-    },1300);
+    },1500);
 
 }
 
 
 
-/* ==================================================
+/* =====================================================
    COUNTDOWN
-================================================== */
+===================================================== */
 
 function revealCountdown(){
 
@@ -1377,16 +1691,20 @@ function revealCountdown(){
         .getElementById("count");
 
 
+    counter.innerHTML=number;
+
+
     const timer =
         setInterval(function(){
 
             number--;
 
+
             counter.innerHTML =
                 number;
 
 
-            if(number===0){
+            if(number <= 0){
 
                 clearInterval(timer);
 
@@ -1416,22 +1734,28 @@ function revealCountdown(){
 
 
 
-/* ==================================================
-   ACCEPT MISSION
-================================================== */
+/* =====================================================
+   FINAL YES
+===================================================== */
 
 function acceptMission(){
-
-    document
-        .querySelector("#final h2")
-        .innerHTML =
-        "❤️ MISSION ACCEPTED ❤️";
-
 
     document
         .querySelector("#final .movieIcon")
         .innerHTML =
         "🍿🥰🎬❤️";
+
+
+    document
+        .querySelector("#final .finalTitle")
+        .innerHTML =
+        "MISSION ACCEPTED!";
+
+
+    document
+        .querySelector("#final h2")
+        .innerHTML =
+        "❤️ Drishyam Movie Night Confirmed! ❤️";
 
 
     createHearts();
@@ -1445,7 +1769,8 @@ function acceptMission(){
 
             "Boss Lady ne Mission Accept kar liya! 😂\n\n" +
 
-            "Ab popcorn arrange karo, " +
+            "Ab popcorn arrange karo...\n" +
+
             "Mr. Innocent! 😎"
 
         );
@@ -1456,9 +1781,9 @@ function acceptMission(){
 
 
 
-/* ==================================================
+/* =====================================================
    FLOATING HEARTS
-================================================== */
+===================================================== */
 
 function createHearts(){
 
@@ -1479,17 +1804,23 @@ function createHearts(){
                 "floatHeart";
 
 
+            const symbols = [
+
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "🍿",
+                "🎬"
+
+            ];
+
+
             heart.innerHTML =
-                [
-                    "❤️",
-                    "💕",
-                    "💖",
-                    "💗",
-                    "🍿",
-                    "🎬"
-                ][
+                symbols[
                     Math.floor(
-                        Math.random()*6
+                        Math.random() *
+                        symbols.length
                     )
                 ];
 
@@ -1534,6 +1865,7 @@ function createHearts(){
 }
 
 </script>
+
 
 </body>
 </html>
